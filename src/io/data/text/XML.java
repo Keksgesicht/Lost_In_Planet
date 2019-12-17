@@ -15,7 +15,12 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 public class XML {
-
+     
+	/**
+	 * 
+	 * @param file the file for the sought root
+	 * @return the root of the given file
+	 */
 	public Element getRoot(File file) {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		Document document = null;
@@ -33,6 +38,12 @@ public class XML {
 		return root;
 	}
 	
+	/**
+	 * 
+	 * @param childList the list of child-nodes you want to search in
+	 * @param name the name of the sought child 
+	 * @return the element which represents the child
+	 */
     public Element getChildbyName(NodeList childList, String name) {
 		for (int i = 0; i < childList.getLength();i++) {
 			if (childList.item(i).getNodeName().equals(name)) {
@@ -42,9 +53,15 @@ public class XML {
 		return null;
 	}
 	
-	public ArrayList<String> getAttributeValues(String[] attributeList, Element element) {
+    /**
+     * 
+     * @param attributeList list of attribute names
+     * @param element the element where the attributes are found
+     * @return values of the given attributes in the given element
+     */
+	public ArrayList<String> getAttributeValues(String[] attributeNames, Element element) {
 		ArrayList<String> attributeValues = new ArrayList<String>();
-		for (String attribute : attributeList) {
+		for (String attribute : attributeNames) {
 			if (!element.getAttribute(attribute).equals(null)) {
 				attributeValues.add(element.getAttribute(attribute));
 			} else {
@@ -54,7 +71,13 @@ public class XML {
 		return attributeValues;
 	}
 	
-	public NodeList getElementsbyName(File file, String name) {
+	/**
+	 * 
+	 * @param file the file where the element(s) are 
+	 * @param name the tag name of the element(s)
+	 * @return nodeList of the element(s) with the tagName within the given file
+	 */
+	public NodeList getElementsbyName(File file, String tagName) {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder;
 		Document document = null;
@@ -71,9 +94,16 @@ public class XML {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        return document.getElementsByTagName(name);
+        return document.getElementsByTagName(tagName);
 	}
 	
+	/**
+	 * 
+	 * @param nodeList nodes where the values will be searched
+	 * @param attributes name of the sought attributes
+	 * @param values sought values of the given attributes
+	 * @return ArrayList of elements which have the same values for the given attributes 
+	 */
 	public ArrayList<Element> getElementsbyValues(NodeList nodeList, String[] attributes, String[] values) {
 		ArrayList<Element> returnList = new ArrayList<Element>() ;
 		for (int i = 0 ; i < nodeList.getLength();i++) {
