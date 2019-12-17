@@ -14,14 +14,14 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-public class XML {
+public abstract class XML {
      
 	/**
 	 * 
 	 * @param file the file for the sought root
 	 * @return the root of the given file
 	 */
-	public Element getRoot(File file) {
+	public static Element getRoot(File file) {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		Document document = null;
 		try {
@@ -44,7 +44,7 @@ public class XML {
 	 * @param name the name of the sought child 
 	 * @return the element which represents the child
 	 */
-    public Element getChildbyName(NodeList childList, String name) {
+    public static Element getChildbyName(NodeList childList, String name) {
 		for (int i = 0; i < childList.getLength();i++) {
 			if (childList.item(i).getNodeName().equals(name)) {
 				return (Element) childList.item(i);
@@ -59,7 +59,7 @@ public class XML {
      * @param element the element where the attributes are found
      * @return values of the given attributes in the given element
      */
-	public ArrayList<String> getAttributeValues(String[] attributeNames, Element element) {
+	public static ArrayList<String> getAttributeValues(String[] attributeNames, Element element) {
 		ArrayList<String> attributeValues = new ArrayList<String>();
 		for (String attribute : attributeNames) {
 			if (!element.getAttribute(attribute).equals(null)) {
@@ -77,7 +77,7 @@ public class XML {
 	 * @param name the tag name of the element(s)
 	 * @return nodeList of the element(s) with the tagName within the given file
 	 */
-	public NodeList getElementsbyName(File file, String tagName) {
+	public static NodeList getElementsbyName(File file, String tagName) {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder;
 		Document document = null;
@@ -104,7 +104,7 @@ public class XML {
 	 * @param values sought values of the given attributes
 	 * @return ArrayList of elements which have the same values for the given attributes 
 	 */
-	public ArrayList<Element> getElementsbyValues(NodeList nodeList, String[] attributes, String[] values) {
+	public static ArrayList<Element> getElementsbyValues(NodeList nodeList, String[] attributes, String[] values) {
 		ArrayList<Element> returnList = new ArrayList<Element>() ;
 		for (int i = 0 ; i < nodeList.getLength();i++) {
 			ArrayList<String> realValues = new ArrayList<String>();
