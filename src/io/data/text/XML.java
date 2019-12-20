@@ -2,6 +2,10 @@ package io.data.text;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -122,6 +126,22 @@ public abstract class XML {
 		   }
 		}
 	   return returnList;
+	}
+
+	/**
+	 * 
+	 * @param source The file to be copied
+	 * @param target The path where the copied file will be
+	 */
+	public static void copyFile(File source, File target) {
+		Path sourcePath = Paths.get(source.getPath());
+		Path targetPath = Paths.get(target.getPath());
+		try {
+			Files.copy(sourcePath, targetPath, StandardCopyOption.REPLACE_EXISTING);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
