@@ -19,7 +19,7 @@ public class XMLplayer {
 
 	}
 
-	public void create(String name) {
+	public void createPlayer(String name) {
 		playerFile = new File("./Game/Characters/" + name + ".xml");
 		XML.copyFile(this.source, playerFile);
 	}
