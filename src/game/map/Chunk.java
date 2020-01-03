@@ -6,6 +6,10 @@ public class Chunk {
 	public Chunk rightChunk;
 	public Chunk topChunk;
 	public Chunk bottomChunk;
+	/**
+	 * first array is the X-Axe <br>
+	 * second array is the Y-Axe
+	 */
 	public final Block[][] blocks = new Block[16][16];
 	
 	public Chunk topLeftChunk() {

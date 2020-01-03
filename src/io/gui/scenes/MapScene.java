@@ -2,14 +2,16 @@ package io.gui.scenes;
 
 import game.map.Block;
 import game.map.Chunk;
+import io.gui.handling.PlayerHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 
 public class MapScene extends Scene {
 
-	Chunk playground;
+	public Chunk playground;
 
 	/**
 	 * @param width  the width of the scene
@@ -17,6 +19,10 @@ public class MapScene extends Scene {
 	 */
 	public MapScene(double width, double height) {
 		super(new GridPane(), width, height);
+
+		PlayerHandler.mapScene = this;
+		PlayerHandler plyHandler = PlayerHandler.singleton();
+		this.addEventHandler(KeyEvent.ANY, plyHandler);
 	}
 
 	public void display(Chunk playground) {
@@ -28,14 +34,18 @@ public class MapScene extends Scene {
 		gridPane.setHgap(1);
 		gridPane.setVgap(1);
 
-		for (int i = 0; i < pBlocks.length; i++) {
-			for (int j = 0; j < pBlocks[0].length; j++) {
-				ImageView image = new ImageView(pBlocks[i][j].image);
-				gridPane.add(image, i, j);
+		for (int x = 0; x < pBlocks.length; x++) {
+			for (int y = 0; y < pBlocks[0].length; y++) {
+				ImageView image = new ImageView(pBlocks[x][y].image);
+				gridPane.add(image, y, x);
 			}
 		}
 
 		this.setRoot(gridPane);
+	}
+
+	public void repaint() {
+		display(playground);
 	}
 
 }

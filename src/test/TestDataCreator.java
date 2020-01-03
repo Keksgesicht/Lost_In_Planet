@@ -17,7 +17,7 @@ public class TestDataCreator {
 			final String execPathString = TestDataCreator.class.getClassLoader().getResource(".").getPath();
 			final Chunk chunk = new Chunk();
 			
-			Block blueBlock = new Block(DataManager.loadImage(execPathString + "images/blue.png", 32, 32),
+			Block blueBlock = new Block(DataManager.loadImage(execPathString + "images/blue.png", 48, 48),
 					"blauer Block");
 			Block[][] pBlocks = chunk.blocks;
 			for (int i = 0; i < pBlocks.length; i++) {
@@ -27,9 +27,17 @@ public class TestDataCreator {
 			}
 
 			Player ply;
+			int x = 8;
+			int y = 3;
 			PlayerHandler.ply = ply = new Player(
-					DataManager.loadImage(execPathString + "images/playermodel.png", 32, 32), "Nummer5");
-			chunk.blocks[8][8] = ply.toBlock();
+					DataManager.loadImage(execPathString + "images/playermodel.png", 48, 48), "Nummer5");
+
+			Block hiddenBlock = chunk.blocks[x][y];
+			chunk.blocks[x][y] = ply.toBlock();
+			chunk.blocks[x][y].hiddenBlock = hiddenBlock;
+
+			ply.x = x;
+			ply.y = y;
 
 			Main main = (Main) app;
 			main.getMapScene().display(chunk);

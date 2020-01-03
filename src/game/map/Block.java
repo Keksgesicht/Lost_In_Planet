@@ -11,6 +11,8 @@ public class Block extends GameVisibleItem implements BlockConvertable {
 	protected boolean destroyAble;
 	protected boolean visible;
 	protected List<InventoryItem> droppedItems;
+	public Block hiddenBlock;
+
 	/*
 	 * weitere Eigenschaften hinzufügen
 	 */

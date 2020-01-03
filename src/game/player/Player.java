@@ -13,13 +13,14 @@ public class Player extends GameVisibleItem implements BlockConvertable {
 
 	public int maxHP ;
 	public int currentHP;
+
+	public int x;
+	public int y;
+	private Block block;
 	 
 	int[] Gear = new int[3]; // int[0] = Head, int[1] = Body, int[2] = Legs, int[3] = Hand
 	int[] Quickslots = new int[3]; 
 	public final Map<InventoryItem, Double> inventoryItems = new HashMap<>();
-	 
-	double x;
-	double y;
 	 
 	File playerFile;
 
@@ -35,7 +36,7 @@ public class Player extends GameVisibleItem implements BlockConvertable {
 
 	@Override
 	public Block toBlock() {
-		return new Block(image, name);
+		return block == null ? block = new Block(image, name) : block;
 	}
 	 
 }
