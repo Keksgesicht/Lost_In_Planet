@@ -1,9 +1,9 @@
 package game.player;
 
-import java.awt.image.BufferedImage;
 import java.util.List;
 
 import game.resources.GameVisibleItem;
+import javafx.scene.image.Image;
 
 public class InventoryItem extends GameVisibleItem {
 
@@ -12,7 +12,7 @@ public class InventoryItem extends GameVisibleItem {
 	/**
 	 * @Override
 	 */
-	public InventoryItem(BufferedImage image, String name) {
+	public InventoryItem(Image image, String name) {
 		super(image, name);
 	}
 

@@ -1,17 +1,17 @@
 package game.resources;
 
-import java.awt.image.BufferedImage;
+import javafx.scene.image.Image;
 
 public abstract class GameVisibleItem {
 
 	public final String name;
-	public final BufferedImage image;
+	public final Image image;
 
 	/**
 	 * @param image the pictures that will be rendered in the GUI
 	 * @param name  let"s the plazer know what item this is
 	 */
-	public GameVisibleItem(BufferedImage image, String name) {
+	public GameVisibleItem(Image image, String name) {
 		this.image = image;
 		this.name = name;
 	}

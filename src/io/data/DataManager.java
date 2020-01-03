@@ -1,12 +1,10 @@
 package io.data;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.net.URL;
 
-import javax.imageio.ImageIO;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -19,6 +17,8 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 
+import javafx.scene.image.Image;
+
 public class DataManager {
 	
 	private static ClassLoader dirOfExecutable = DataManager.class.getClassLoader();
@@ -27,25 +27,33 @@ public class DataManager {
 	public static File ply;
 	public static File savegame;
 
+
 	public static void setupDirs() {
 		InputStream myData = dirOfExecutable.getResourceAsStream("data/data.xml");
 	}
 
 	/**
-	 * Lädt ein Bild aus den Resourcen
-	 * 
-	 * @param name der Name der Datei
-	 * @return das Bild als {@link BufferedImage}-Objekt
-	 * @throws IOException Eine IOException wird geworfen, falls das Bild nicht
-	 *                     gefunden wurde oder andere Probleme beim Laden auftreten
+	 * @param iStream the stream from which to load the image
+	 * @param width   the image's bounding box width
+	 * @param height  the image's bounding box height
+	 * @return the Image
+	 * @throws NullPointerException if input stream is null
 	 */
-	public static BufferedImage loadImage(String name) throws IOException {
-		URL res = dirOfExecutable.getResource(name);
-		if (res == null)
-			throw new IOException("Resource not found: " + name);
-		return ImageIO.read(res);
+	public static Image loadImage(InputStream iStream, double width, double height) {
+		return new Image(iStream, width, height, false, true);
 	}
 	
+	/**
+	 * @param fileLocation where the file should be located within the filesystem
+	 * @param width        the image's bounding box width
+	 * @param height       the image's bounding box height
+	 * @return the Image
+	 * @throws FileNotFoundException
+	 */
+	public static Image loadImage(String fileLocation, double width, double height) throws FileNotFoundException {
+		return loadImage(new FileInputStream(fileLocation), width, height);
+	}
+
 	public static Document docBuilder() {
 		
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();

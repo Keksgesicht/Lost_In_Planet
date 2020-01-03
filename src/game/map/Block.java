@@ -1,12 +1,12 @@
 package game.map;
 
-import java.awt.image.BufferedImage;
 import java.util.List;
 
 import game.player.InventoryItem;
 import game.resources.GameVisibleItem;
+import javafx.scene.image.Image;
 
-public class Block extends GameVisibleItem {
+public class Block extends GameVisibleItem implements BlockConvertable {
 
 	protected boolean destroyAble;
 	protected boolean visible;
@@ -18,7 +18,7 @@ public class Block extends GameVisibleItem {
 	/**
 	 * @Override
 	 */
-	public Block(BufferedImage image, String name) {
+	public Block(Image image, String name) {
 		super(image, name);
 	}
 
@@ -62,6 +62,11 @@ public class Block extends GameVisibleItem {
 	 */
 	public void setDroppedItems(List<InventoryItem> droppedItems) {
 		this.droppedItems = droppedItems;
+	}
+
+	@Override
+	public Block toBlock() {
+		return this;
 	}
 
 }
