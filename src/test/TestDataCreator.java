@@ -19,10 +19,23 @@ public class TestDataCreator {
 			
 			Block blueBlock = new Block(DataManager.loadImage(execPathString + "images/blue.png", 48, 48),
 					"blauer Block");
+			Block greenBlock = new Block(DataManager.loadImage(execPathString + "images/green.png", 48, 48),
+					"blauer Block");
+			Block redBlock = new Block(DataManager.loadImage(execPathString + "images/red.png", 48, 48),
+					"blauer Block");
+			Block whiteBlock = new Block(DataManager.loadImage(execPathString + "images/white.png", 48, 48),
+					"blauer Block");
+
+			Block[] coloredBlocks = new Block[4];
+			coloredBlocks[0] = blueBlock;
+			coloredBlocks[1] = greenBlock;
+			coloredBlocks[2] = redBlock;
+			coloredBlocks[3] = whiteBlock;
+
 			Block[][] pBlocks = chunk.blocks;
 			for (int i = 0; i < pBlocks.length; i++) {
 				for (int j = 0; j < pBlocks[0].length; j++) {
-					pBlocks[i][j] = blueBlock;
+					pBlocks[i][j] = coloredBlocks[Math.max(i, j) % 4];
 				}
 			}
 

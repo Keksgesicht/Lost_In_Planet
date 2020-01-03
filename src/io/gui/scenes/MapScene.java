@@ -37,7 +37,7 @@ public class MapScene extends Scene {
 		for (int x = 0; x < pBlocks.length; x++) {
 			for (int y = 0; y < pBlocks[0].length; y++) {
 				ImageView image = new ImageView(pBlocks[x][y].image);
-				gridPane.add(image, y, x);
+				gridPane.add(image, x, y);
 			}
 		}
 
