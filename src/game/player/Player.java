@@ -1,6 +1,5 @@
 package game.player;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,18 +10,16 @@ import javafx.scene.image.Image;
 
 public class Player extends GameVisibleItem implements BlockConvertable {
 
-	public int maxHP ;
-	public int currentHP;
-
 	public int x;
 	public int y;
-	private Block block;
-	 
-	int[] Gear = new int[3]; // int[0] = Head, int[1] = Body, int[2] = Legs, int[3] = Hand
-	int[] Quickslots = new int[3]; 
+
 	public final Map<InventoryItem, Double> inventoryItems = new HashMap<>();
-	 
-	File playerFile;
+	public final int[] Gear = new int[3]; // int[0] = Head, int[1] = Body, int[2] = Legs, int[3] = Hand
+	public final int[] Quickslots = new int[3];
+
+	private int maxHP;
+	private int currentHP;
+	private Block block;
 
 	/**
 	 * 

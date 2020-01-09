@@ -22,11 +22,10 @@ import javafx.scene.image.Image;
 public class DataManager {
 	
 	private static ClassLoader dirOfExecutable = DataManager.class.getClassLoader();
-	public static File map;
-	public static File cfg;
-	public static File ply;
-	public static File savegame;
-
+	static File map;
+	static File cfg;
+	static File ply;
+	static File savegame;
 
 	public static void setupDirs() {
 		InputStream myData = dirOfExecutable.getResourceAsStream("data/data.xml");

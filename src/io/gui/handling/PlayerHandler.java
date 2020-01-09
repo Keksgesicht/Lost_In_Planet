@@ -13,26 +13,50 @@ import javafx.scene.input.KeyEvent;
  */
 public class PlayerHandler implements EventHandler<KeyEvent> {
 
-	public static KeyCode KEY_PLAYER_UP = KeyCode.W;
-	public static KeyCode KEY_PLAYER_DOWN = KeyCode.S;
-	public static KeyCode KEY_PLAYER_LEFT = KeyCode.A;
-	public static KeyCode KEY_PLAYER_RIGHT = KeyCode.D;
+	private static KeyCode KEY_PLAYER_UP = KeyCode.W;
+	private static KeyCode KEY_PLAYER_DOWN = KeyCode.S;
+	private static KeyCode KEY_PLAYER_LEFT = KeyCode.A;
+	private static KeyCode KEY_PLAYER_RIGHT = KeyCode.D;
 
 	private static PlayerHandler singleton;
-	public static MapScene mapScene;
-	public static Player ply;
+	private static MapScene mapScene;
+	private static Block[][] blocks;
+	private Player ply;
 
-	private Block[][] blocks;
+	static {
+
+	}
 
 	public static PlayerHandler singleton() {
 		if (singleton == null)
-			return new PlayerHandler();
+			return singleton = new PlayerHandler();
 		else
 			return singleton;
 	}
 
 	private PlayerHandler() {
 		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @param mapScene the mapScene to set
+	 */
+	public static void setMapScene(MapScene mapScene) {
+		PlayerHandler.mapScene = mapScene;
+	}
+
+	/**
+	 * @return the current active player
+	 */
+	public Player getPlayer() {
+		return ply;
+	}
+
+	/**
+	 * @param ply the current active player
+	 */
+	public void setPlayer(Player ply) {
+		this.ply = ply;
 	}
 
 	@Override
@@ -52,28 +76,28 @@ public class PlayerHandler implements EventHandler<KeyEvent> {
 
 	private void movePlayer(KeyCode keyCode) {
 		blocks = mapScene.playground.blocks;
-		Block playerBlock = ply.toBlock();
+		Block playerBlock = getPlayer().toBlock();
 		
 		if (keyCode == KEY_PLAYER_UP) {
-			if (ply.y != 0) {
-				hiddenBlock(ply.x, ply.y--, playerBlock);
-				playerBlock(ply.x, ply.y, playerBlock);
+			if (getPlayer().y != 0) {
+				hiddenBlock(getPlayer().x, getPlayer().y--, playerBlock);
+				playerBlock(getPlayer().x, getPlayer().y, playerBlock);
 			}
 		}
 		else if (keyCode == KEY_PLAYER_DOWN) {
-			if (ply.y != blocks[ply.x].length - 1) {
-				hiddenBlock(ply.x, ply.y++, playerBlock);
-				playerBlock(ply.x, ply.y, playerBlock);
+			if (getPlayer().y != blocks[getPlayer().x].length - 1) {
+				hiddenBlock(getPlayer().x, getPlayer().y++, playerBlock);
+				playerBlock(getPlayer().x, getPlayer().y, playerBlock);
 			}
 		} else if (keyCode == KEY_PLAYER_LEFT) {
-			if (ply.x != 0) {
-				hiddenBlock(ply.x--, ply.y, playerBlock);
-				playerBlock(ply.x, ply.y, playerBlock);
+			if (getPlayer().x != 0) {
+				hiddenBlock(getPlayer().x--, getPlayer().y, playerBlock);
+				playerBlock(getPlayer().x, getPlayer().y, playerBlock);
 			}
 		} else if (keyCode == KEY_PLAYER_RIGHT) {
-			if (ply.x != blocks.length - 1) {
-				hiddenBlock(ply.x++, ply.y, playerBlock);
-				playerBlock(ply.x, ply.y, playerBlock);
+			if (getPlayer().x != blocks.length - 1) {
+				hiddenBlock(getPlayer().x++, getPlayer().y, playerBlock);
+				playerBlock(getPlayer().x, getPlayer().y, playerBlock);
 			}
 		}
 		mapScene.repaint();
@@ -87,7 +111,5 @@ public class PlayerHandler implements EventHandler<KeyEvent> {
 		playerBlock.setHiddenBlock(blocks[x][y]);
 		blocks[x][y] = playerBlock;
 	}
-
-
 
 }

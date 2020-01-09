@@ -20,7 +20,7 @@ public class MapScene extends Scene {
 	public MapScene(double width, double height) {
 		super(new GridPane(), width, height);
 
-		PlayerHandler.mapScene = this;
+		PlayerHandler.setMapScene(this);
 		PlayerHandler plyHandler = PlayerHandler.singleton();
 		this.addEventHandler(KeyEvent.ANY, plyHandler);
 	}

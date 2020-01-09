@@ -13,10 +13,17 @@ import javafx.application.Application;
 public class TestDataCreator {
 
 	public static void createData(Application app) {
+		final String execPathString = TestDataCreator.class.getClassLoader().getResource(".").getPath();
+		final PlayerHandler plyHandler = PlayerHandler.singleton();
+		final Main main = (Main) app;
+
+		final Chunk chunk = new Chunk();
+		final Block[][] pBlocks = chunk.blocks;
+
+		Block[] coloredBlocks = new Block[4];
+		Player ply = null;
+
 		try {
-			final String execPathString = TestDataCreator.class.getClassLoader().getResource(".").getPath();
-			final Chunk chunk = new Chunk();
-			
 			Block blueBlock = new Block(DataManager.loadImage(execPathString + "images/blue.png", 48, 48),
 					"blauer Block");
 			Block greenBlock = new Block(DataManager.loadImage(execPathString + "images/green.png", 48, 48),
@@ -26,37 +33,34 @@ public class TestDataCreator {
 			Block whiteBlock = new Block(DataManager.loadImage(execPathString + "images/white.png", 48, 48),
 					"blauer Block");
 
-			Block[] coloredBlocks = new Block[4];
 			coloredBlocks[0] = blueBlock;
 			coloredBlocks[1] = greenBlock;
 			coloredBlocks[2] = redBlock;
 			coloredBlocks[3] = whiteBlock;
-
-			Block[][] pBlocks = chunk.blocks;
-			for (int i = 0; i < pBlocks.length; i++) {
-				for (int j = 0; j < pBlocks[0].length; j++) {
-					pBlocks[i][j] = coloredBlocks[Math.max(i, j) % 4];
-				}
-			}
-
-			Player ply;
-			int x = 8;
-			int y = 3;
-			PlayerHandler.ply = ply = new Player(
-					DataManager.loadImage(execPathString + "images/playermodel.png", 48, 48), "Nummer5");
-
-			Block hiddenBlock = chunk.blocks[x][y];
-			chunk.blocks[x][y] = ply.toBlock();
-			chunk.blocks[x][y].setHiddenBlock(hiddenBlock);
-
-			ply.x = x;
-			ply.y = y;
-
-			Main main = (Main) app;
-			main.getMapScene().display(chunk);
+			
+			ply = new Player(DataManager.loadImage(execPathString + "images/playermodel.png", 48, 48), "Nummer5");
+			plyHandler.setPlayer(ply);
 		} catch (FileNotFoundException e) {
 			System.out.println(e.getMessage());
 		}
+
+		for (int i = 0; i < pBlocks.length; i++) {
+			for (int j = 0; j < pBlocks[0].length; j++) {
+				pBlocks[i][j] = coloredBlocks[Math.max(i, j) % 4];
+			}
+		}
+
+		int x = 8;
+		int y = 3;
+
+		Block hiddenBlock = chunk.blocks[x][y];
+		chunk.blocks[x][y] = ply.toBlock();
+		chunk.blocks[x][y].setHiddenBlock(hiddenBlock);
+
+		ply.x = x;
+		ply.y = y;
+
+		main.getMapScene().display(chunk);
 	}
 
 }
