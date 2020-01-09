@@ -1,5 +1,6 @@
 package game.player;
 
+import java.awt.Point;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,9 +11,6 @@ import javafx.scene.image.Image;
 
 public class Player extends GameVisibleItem implements BlockConvertable {
 
-	public int x;
-	public int y;
-
 	public final Map<InventoryItem, Double> inventoryItems = new HashMap<>();
 	public final int[] Gear = new int[3]; // int[0] = Head, int[1] = Body, int[2] = Legs, int[3] = Hand
 	public final int[] Quickslots = new int[3];
@@ -20,6 +18,7 @@ public class Player extends GameVisibleItem implements BlockConvertable {
 	private int maxHP;
 	private int currentHP;
 	private Block block;
+	private Point p;
 
 	/**
 	 * 
@@ -34,6 +33,20 @@ public class Player extends GameVisibleItem implements BlockConvertable {
 	@Override
 	public Block toBlock() {
 		return block == null ? block = new Block(image(), name()) : block;
+	}
+
+	/**
+	 * @return the position of the player
+	 */
+	public Point getPosition() {
+		return p;
+	}
+
+	/**
+	 * @param p the position of the player
+	 */
+	public void setPosition(Point p) {
+		this.p = p;
 	}
 	 
 }

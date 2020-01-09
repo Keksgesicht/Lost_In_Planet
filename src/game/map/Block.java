@@ -29,7 +29,6 @@ public class Block extends GameVisibleItem implements BlockConvertable {
 		return this;
 	}
 
-
 	/**
 	 * @return the destroyAble
 	 */

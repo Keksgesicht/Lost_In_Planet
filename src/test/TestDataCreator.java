@@ -1,5 +1,6 @@
 package test;
 
+import java.awt.Point;
 import java.io.FileNotFoundException;
 
 import game.map.Block;
@@ -56,9 +57,7 @@ public class TestDataCreator {
 		Block hiddenBlock = chunk.blocks[x][y];
 		chunk.blocks[x][y] = ply.toBlock();
 		chunk.blocks[x][y].setHiddenBlock(hiddenBlock);
-
-		ply.x = x;
-		ply.y = y;
+		ply.setPosition(new Point(x, y));
 
 		main.getMapScene().display(chunk);
 	}

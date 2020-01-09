@@ -1,5 +1,6 @@
 package io.gui.handling;
 
+import java.awt.Point;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -85,28 +86,30 @@ public class PlayerHandler implements EventHandler<KeyEvent> {
 
 	private void movePlayer(KeyCode keyCode) {
 		blocks = mapScene.playground.blocks;
-		Block playerBlock = getPlayer().toBlock();
+		Player ply = getPlayer();
+		Block playerBlock = ply.toBlock();
+		Point plyPosition = ply.getPosition();
 		
 		if (KEY_MAP.get("KEY_PLAYER_UP").contains(keyCode)) {
-			if (getPlayer().y != 0) {
-				hiddenBlock(getPlayer().x, getPlayer().y--, playerBlock);
-				playerBlock(getPlayer().x, getPlayer().y, playerBlock);
+			if (plyPosition.y != 0) {
+				hiddenBlock(plyPosition.x, plyPosition.y--, playerBlock);
+				playerBlock(plyPosition.x, plyPosition.y, playerBlock);
 			}
 		}
 		else if (KEY_MAP.get("KEY_PLAYER_DOWN").contains(keyCode)) {
-			if (getPlayer().y != blocks[getPlayer().x].length - 1) {
-				hiddenBlock(getPlayer().x, getPlayer().y++, playerBlock);
-				playerBlock(getPlayer().x, getPlayer().y, playerBlock);
+			if (plyPosition.y != blocks[plyPosition.x].length - 1) {
+				hiddenBlock(plyPosition.x, plyPosition.y++, playerBlock);
+				playerBlock(plyPosition.x, plyPosition.y, playerBlock);
 			}
 		} else if (KEY_MAP.get("KEY_PLAYER_LEFT").contains(keyCode)) {
-			if (getPlayer().x != 0) {
-				hiddenBlock(getPlayer().x--, getPlayer().y, playerBlock);
-				playerBlock(getPlayer().x, getPlayer().y, playerBlock);
+			if (plyPosition.x != 0) {
+				hiddenBlock(plyPosition.x--, plyPosition.y, playerBlock);
+				playerBlock(plyPosition.x, plyPosition.y, playerBlock);
 			}
 		} else if (KEY_MAP.get("KEY_PLAYER_RIGHT").contains(keyCode)) {
-			if (getPlayer().x != blocks.length - 1) {
-				hiddenBlock(getPlayer().x++, getPlayer().y, playerBlock);
-				playerBlock(getPlayer().x, getPlayer().y, playerBlock);
+			if (plyPosition.x != blocks.length - 1) {
+				hiddenBlock(plyPosition.x++, plyPosition.y, playerBlock);
+				playerBlock(plyPosition.x, plyPosition.y, playerBlock);
 			}
 		}
 		mapScene.repaint();
