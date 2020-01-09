@@ -36,7 +36,7 @@ public class Player extends GameVisibleItem implements BlockConvertable {
 
 	@Override
 	public Block toBlock() {
-		return block == null ? block = new Block(image, name) : block;
+		return block == null ? block = new Block(image(), name()) : block;
 	}
 	 
 }

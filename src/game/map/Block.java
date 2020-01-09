@@ -8,21 +8,27 @@ import javafx.scene.image.Image;
 
 public class Block extends GameVisibleItem implements BlockConvertable {
 
-	protected boolean destroyAble;
-	protected boolean visible;
-	protected List<InventoryItem> droppedItems;
-	public Block hiddenBlock;
-
+	private boolean destroyAble;
+	private boolean visible;
+	private List<InventoryItem> droppedItems;
+	private Block hiddenBlock;
 	/*
 	 * weitere Eigenschaften hinzufügen
 	 */
 
 	/**
-	 * @Override
+	 * @param image the pictures that will be rendered in the GUI
+	 * @param name  let"s the plazer know what item this is
 	 */
 	public Block(Image image, String name) {
 		super(image, name);
 	}
+
+	@Override
+	public Block toBlock() {
+		return this;
+	}
+
 
 	/**
 	 * @return the destroyAble
@@ -66,9 +72,19 @@ public class Block extends GameVisibleItem implements BlockConvertable {
 		this.droppedItems = droppedItems;
 	}
 
-	@Override
-	public Block toBlock() {
-		return this;
+	/**
+	 * @return the hiddenBlock
+	 */
+	public Block getHiddenBlock() {
+		return hiddenBlock;
 	}
+
+	/**
+	 * @param hiddenBlock the hiddenBlock to set
+	 */
+	public void setHiddenBlock(Block hiddenBlock) {
+		this.hiddenBlock = hiddenBlock;
+	}
+
 
 }

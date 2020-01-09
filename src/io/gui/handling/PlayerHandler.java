@@ -80,11 +80,11 @@ public class PlayerHandler implements EventHandler<KeyEvent> {
 	}
 
 	private void hiddenBlock(int x, int y, Block playerBlock) {
-		blocks[x][y] = playerBlock.hiddenBlock;
+		blocks[x][y] = playerBlock.getHiddenBlock();
 	}
 
 	private void playerBlock(int x, int y, Block playerBlock) {
-		playerBlock.hiddenBlock = blocks[x][y];
+		playerBlock.setHiddenBlock(blocks[x][y]);
 		blocks[x][y] = playerBlock;
 	}
 

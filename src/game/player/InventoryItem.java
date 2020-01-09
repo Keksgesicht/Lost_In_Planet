@@ -10,7 +10,8 @@ public class InventoryItem extends GameVisibleItem {
 	protected List<PlayerEffect> playerEffects;
 	
 	/**
-	 * @Override
+	 * @param image the pictures that will be rendered in the GUI
+	 * @param name  let"s the plazer know what item this is
 	 */
 	public InventoryItem(Image image, String name) {
 		super(image, name);

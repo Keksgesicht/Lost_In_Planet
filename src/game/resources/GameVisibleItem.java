@@ -4,8 +4,8 @@ import javafx.scene.image.Image;
 
 public abstract class GameVisibleItem {
 
-	public final String name;
-	public final Image image;
+	private final String name;
+	private final Image image;
 
 	/**
 	 * @param image the pictures that will be rendered in the GUI
@@ -14,6 +14,20 @@ public abstract class GameVisibleItem {
 	public GameVisibleItem(Image image, String name) {
 		this.image = image;
 		this.name = name;
+	}
+
+	/**
+	 * @return the name
+	 */
+	public String name() {
+		return name;
+	}
+
+	/**
+	 * @return the image
+	 */
+	public Image image() {
+		return image;
 	}
 
 }
