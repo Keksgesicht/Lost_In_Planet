@@ -1,5 +1,11 @@
 package io.gui.handling;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import game.map.Block;
 import game.player.Player;
 import io.gui.scenes.MapScene;
@@ -13,18 +19,22 @@ import javafx.scene.input.KeyEvent;
  */
 public class PlayerHandler implements EventHandler<KeyEvent> {
 
-	private static KeyCode KEY_PLAYER_UP = KeyCode.W;
-	private static KeyCode KEY_PLAYER_DOWN = KeyCode.S;
-	private static KeyCode KEY_PLAYER_LEFT = KeyCode.A;
-	private static KeyCode KEY_PLAYER_RIGHT = KeyCode.D;
-
+	private static final Map<String, Set<KeyCode>> KEY_MAP = new HashMap<String, Set<KeyCode>>();
 	private static PlayerHandler singleton;
 	private static MapScene mapScene;
 	private static Block[][] blocks;
 	private Player ply;
 
 	static {
+		// ONLY DURING TESTING
+		setKeyBinding("KEY_PLAYER_UP", KeyCode.W, KeyCode.UP);
+		setKeyBinding("KEY_PLAYER_DOWN", KeyCode.S, KeyCode.DOWN);
+		setKeyBinding("KEY_PLAYER_LEFT", KeyCode.A, KeyCode.LEFT);
+		setKeyBinding("KEY_PLAYER_RIGHT", KeyCode.D, KeyCode.RIGHT);
+	}
 
+	public static void setKeyBinding(String function, KeyCode... keys) {
+		KEY_MAP.put(function, Arrays.stream(keys).collect(Collectors.toSet()));
 	}
 
 	public static PlayerHandler singleton() {
@@ -65,10 +75,9 @@ public class PlayerHandler implements EventHandler<KeyEvent> {
 		KeyCode keyCode = keyEvent.getCode();
 		
 		if (keyEventType == KeyEvent.KEY_PRESSED) {
-			if (keyCode == KEY_PLAYER_UP 
-			 || keyCode == KEY_PLAYER_DOWN
-			 || keyCode == KEY_PLAYER_LEFT
-			 || keyCode == KEY_PLAYER_RIGHT) {
+			if (KEY_MAP.get("KEY_PLAYER_UP").contains(keyCode) || KEY_MAP.get("KEY_PLAYER_DOWN").contains(keyCode)
+					|| KEY_MAP.get("KEY_PLAYER_LEFT").contains(keyCode)
+					|| KEY_MAP.get("KEY_PLAYER_RIGHT").contains(keyCode)) {
 				movePlayer(keyCode);
 			}
 		}
@@ -78,23 +87,23 @@ public class PlayerHandler implements EventHandler<KeyEvent> {
 		blocks = mapScene.playground.blocks;
 		Block playerBlock = getPlayer().toBlock();
 		
-		if (keyCode == KEY_PLAYER_UP) {
+		if (KEY_MAP.get("KEY_PLAYER_UP").contains(keyCode)) {
 			if (getPlayer().y != 0) {
 				hiddenBlock(getPlayer().x, getPlayer().y--, playerBlock);
 				playerBlock(getPlayer().x, getPlayer().y, playerBlock);
 			}
 		}
-		else if (keyCode == KEY_PLAYER_DOWN) {
+		else if (KEY_MAP.get("KEY_PLAYER_DOWN").contains(keyCode)) {
 			if (getPlayer().y != blocks[getPlayer().x].length - 1) {
 				hiddenBlock(getPlayer().x, getPlayer().y++, playerBlock);
 				playerBlock(getPlayer().x, getPlayer().y, playerBlock);
 			}
-		} else if (keyCode == KEY_PLAYER_LEFT) {
+		} else if (KEY_MAP.get("KEY_PLAYER_LEFT").contains(keyCode)) {
 			if (getPlayer().x != 0) {
 				hiddenBlock(getPlayer().x--, getPlayer().y, playerBlock);
 				playerBlock(getPlayer().x, getPlayer().y, playerBlock);
 			}
-		} else if (keyCode == KEY_PLAYER_RIGHT) {
+		} else if (KEY_MAP.get("KEY_PLAYER_RIGHT").contains(keyCode)) {
 			if (getPlayer().x != blocks.length - 1) {
 				hiddenBlock(getPlayer().x++, getPlayer().y, playerBlock);
 				playerBlock(getPlayer().x, getPlayer().y, playerBlock);
