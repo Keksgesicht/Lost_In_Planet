@@ -8,6 +8,7 @@
  */
 public class PullRequest {
 
+	int i = 0;
 	/**
 	 * 
 	 */
@@ -16,5 +17,6 @@ public class PullRequest {
 		int i = 0;
 		System.out.print(i);
 	}
+
 
 }
