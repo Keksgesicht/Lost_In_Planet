@@ -3,6 +3,8 @@ package io.gui.game.map;
 import java.awt.Point;
 
 import game.map.GameMap;
+import game.player.Player;
+import game.resources.GameData;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
@@ -75,9 +77,22 @@ class GridDrawerThread extends Thread {
 
 	@Override
 	public void run() {
-		for (int x = 0; x < mapScene.gameWidth; x++) {
-			ImageView image = new ImageView(mapScene.map.getBlock(x, y).image());
-			mapScene.gridPane.add(image, x, y);
+		ImageView image;
+		Player ply = GameData.getPlayer(0);
+		if (ply.posY() == y) {
+			for (int x = 0; x < mapScene.gameWidth; x++) {
+				if (ply.posX() == x)
+					image = new ImageView(ply.image());
+				else
+					image = new ImageView(mapScene.map.getBlock(x, y).image());
+				mapScene.gridPane.add(image, x, y);
+			}
+		} else {
+			for (int x = 0; x < mapScene.gameWidth; x++) {
+				image = new ImageView(mapScene.map.getBlock(x, y).image());
+				mapScene.gridPane.add(image, x, y);
+			}
 		}
+			
 	}
 }

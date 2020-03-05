@@ -4,18 +4,22 @@ import java.util.ArrayList;
 
 public class GameMap {
 
-	private ArrayList<ArrayList<Block>> map = new ArrayList<>();
+	/*
+	 * geplant ist immer nur das im Speicher zu haben was gerade benötigt wird.
+	 * mithilfe von offsets soll zur realen Map Teil referenyiert werden können.
+	 */
+	private ArrayList<ArrayList<Block>> map;
 
 	public Block getBlock(int x, int y) {
 		return map.get(x).get(y);
 	}
 
 	public int getWidth() {
-		return 0;
+		return map.size();
 	}
 
 	public int getHeight() {
-		return 0;
+		return map.get(0).size();
 	}
 
 }
