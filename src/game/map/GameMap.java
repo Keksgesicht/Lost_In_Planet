@@ -9,11 +9,15 @@ public class GameMap {
 	 * mithilfe von offsets soll zur realen Map Teil referenyiert werden können.
 	 */
 	private ArrayList<ArrayList<Block>> map;
+	private int width;
+	private int height;
 
 	/**
 	 * 
 	 */
 	public GameMap(int width , int height) {
+		this.width = width;
+		this.height = height;
 		map = new ArrayList<>(width);
 		for (int i = 0; i < width; i++) {
 			ArrayList<Block> col = new ArrayList<>(height);
@@ -33,11 +37,11 @@ public class GameMap {
 	}
 
 	public int getWidth() {
-		return map.size();
+		return width;
 	}
 
 	public int getHeight() {
-		return map.get(0).size();
+		return height;
 	}
 
 }

@@ -42,13 +42,13 @@ public class MapScene extends Scene {
 		Player ply = GameData.getPlayer(0);
 		int posX = ply.posX() + x;
 		int posY = ply.posY() + y;
-		int mapMaxX = map.getWidth() - 1;
-		int mapMaxY = map.getHeight() - 1;
+		int mapMaxX = map.getWidth();
+		int mapMaxY = map.getHeight();
 
 		// view bounds check
-		if (0 <= newX && newX + gameWidth < mapMaxX && newX + gameWidth / 2 == posX)
+		if (0 <= newX && newX + gameWidth <= mapMaxX && newX + gameWidth / 2 == posX)
 			base.x = newX;
-		if (0 <= newY && newY + gameHeight < mapMaxY && newY + gameHeight / 2 == posY)
+		if (0 <= newY && newY + gameHeight <= mapMaxY && newY + gameHeight / 2 == posY)
 			base.y = newY;
 
 		// player bounds check
