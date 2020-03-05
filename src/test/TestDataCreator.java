@@ -4,21 +4,21 @@ import java.awt.Point;
 import java.io.FileNotFoundException;
 
 import game.map.Block;
-import game.map.Chunk;
+import game.map.Map;
 import game.player.Player;
 import io.data.DataManager;
-import io.gui.handling.PlayerHandler;
-import io.gui.stages.Main;
+import io.gui.game.map.Main;
+import io.gui.handling.KeyHandler;
 import javafx.application.Application;
 
 public class TestDataCreator {
 
 	public static void createData(Application app) {
 		final String execPathString = TestDataCreator.class.getClassLoader().getResource(".").getPath();
-		final PlayerHandler plyHandler = PlayerHandler.singleton();
+		final KeyHandler plyHandler = KeyHandler.singleton();
 		final Main main = (Main) app;
 
-		final Chunk chunk = new Chunk();
+		final Map chunk = new Map();
 		final Block[][] pBlocks = chunk.blocks;
 
 		Block[] coloredBlocks = new Block[4];

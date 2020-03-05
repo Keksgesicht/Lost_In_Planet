@@ -54,7 +54,6 @@ public class DataManager {
 	}
 
 	public static Document docBuilder() {
-		
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 	    DocumentBuilder dBuilder = null;
 		try {
