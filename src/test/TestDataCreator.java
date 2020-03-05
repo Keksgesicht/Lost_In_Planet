@@ -13,8 +13,8 @@ public class TestDataCreator {
 
 	public static void createData(GameStage app) {
 		final int width, height;
-		width = 200;
-		height = 75;
+		width = 160;
+		height = 90;
 		final String execPathString = TestDataCreator.class.getClassLoader().getResource(".").getPath();
 		final GameMap map = new GameMap(width, height);
 
@@ -22,13 +22,13 @@ public class TestDataCreator {
 		Player ply = null;
 
 		try {
-			Block blueBlock = new Block(DataManager.loadImage(execPathString + "images/blue.png", 20, 20),
+			Block blueBlock = new Block(DataManager.loadImage(execPathString + "images/blue.png", 100, 100),
 					"blauer Block");
-			Block greenBlock = new Block(DataManager.loadImage(execPathString + "images/green.png", 20, 20),
+			Block greenBlock = new Block(DataManager.loadImage(execPathString + "images/green.png", 100, 100),
 					"blauer Block");
-			Block redBlock = new Block(DataManager.loadImage(execPathString + "images/red.png", 20, 20),
+			Block redBlock = new Block(DataManager.loadImage(execPathString + "images/red.png", 100, 100),
 					"blauer Block");
-			Block whiteBlock = new Block(DataManager.loadImage(execPathString + "images/white.png", 20, 20),
+			Block whiteBlock = new Block(DataManager.loadImage(execPathString + "images/white.png", 100, 100),
 					"blauer Block");
 
 			coloredBlocks[0] = blueBlock;
@@ -36,7 +36,7 @@ public class TestDataCreator {
 			coloredBlocks[2] = redBlock;
 			coloredBlocks[3] = whiteBlock;
 			
-			ply = new Player(DataManager.loadImage(execPathString + "images/playermodel.png", 20, 20), "Nummer5");
+			ply = new Player(DataManager.loadImage(execPathString + "images/playermodel.png", 100, 100), "Nummer5");
 		} catch (FileNotFoundException e) {
 			System.out.println(e.getMessage());
 		}

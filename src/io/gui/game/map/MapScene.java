@@ -81,6 +81,8 @@ public class MapScene extends Scene {
 					image = new ImageView(ply.image());
 				else
 					image = new ImageView(map.getBlock(bx, by).image());
+				image.setFitHeight(20);
+				image.setFitWidth(20);
 				box.getChildren().add(x, image);
 			}
 			pane.getChildren().add(y, box);
