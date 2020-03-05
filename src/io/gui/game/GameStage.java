@@ -1,11 +1,11 @@
-package io.gui.stages;
+package io.gui.game;
 
-import io.gui.scenes.MapScene;
+import io.gui.game.map.MapScene;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import test.TestDataCreator;
 
-public class Main extends Application {
+public class GameStage extends Application {
 
 	private MapScene mapScene;
 
@@ -19,7 +19,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("Lost in Planet");
-		mapScene = new MapScene(808, 808);
+		mapScene = new MapScene(1600, 900);
 		primaryStage.setScene(mapScene);
 		primaryStage.show();
 		TestDataCreator.createData(this);

@@ -1,6 +1,5 @@
 package game.player;
 
-import java.awt.Point;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,7 +17,6 @@ public class Player extends GameVisibleItem implements BlockConvertable {
 	private int maxHP;
 	private int currentHP;
 	private Block block;
-	private Point p;
 
 	/**
 	 * 
@@ -33,20 +31,6 @@ public class Player extends GameVisibleItem implements BlockConvertable {
 	@Override
 	public Block toBlock() {
 		return block == null ? block = new Block(image(), name()) : block;
-	}
-
-	/**
-	 * @return the position of the player
-	 */
-	public Point getPosition() {
-		return p;
-	}
-
-	/**
-	 * @param p the position of the player
-	 */
-	public void setPosition(Point p) {
-		this.p = p;
 	}
 	 
 }
