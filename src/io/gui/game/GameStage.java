@@ -19,7 +19,7 @@ public class GameStage extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("Lost in Planet");
-		mapScene = new MapScene(1900, 1000);
+		mapScene = new MapScene(1600, 900);
 		primaryStage.setScene(mapScene);
 		primaryStage.show();
 		TestDataCreator.createData(this);

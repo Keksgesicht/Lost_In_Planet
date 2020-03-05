@@ -22,13 +22,13 @@ public class TestDataCreator {
 		Player ply = null;
 
 		try {
-			Block blueBlock = new Block(DataManager.loadImage(execPathString + "images/blue.png", 48, 48),
+			Block blueBlock = new Block(DataManager.loadImage(execPathString + "images/blue.png", 20, 20),
 					"blauer Block");
-			Block greenBlock = new Block(DataManager.loadImage(execPathString + "images/green.png", 48, 48),
+			Block greenBlock = new Block(DataManager.loadImage(execPathString + "images/green.png", 20, 20),
 					"blauer Block");
-			Block redBlock = new Block(DataManager.loadImage(execPathString + "images/red.png", 48, 48),
+			Block redBlock = new Block(DataManager.loadImage(execPathString + "images/red.png", 20, 20),
 					"blauer Block");
-			Block whiteBlock = new Block(DataManager.loadImage(execPathString + "images/white.png", 48, 48),
+			Block whiteBlock = new Block(DataManager.loadImage(execPathString + "images/white.png", 20, 20),
 					"blauer Block");
 
 			coloredBlocks[0] = blueBlock;
@@ -36,14 +36,14 @@ public class TestDataCreator {
 			coloredBlocks[2] = redBlock;
 			coloredBlocks[3] = whiteBlock;
 			
-			ply = new Player(DataManager.loadImage(execPathString + "images/playermodel.png", 48, 48), "Nummer5");
+			ply = new Player(DataManager.loadImage(execPathString + "images/playermodel.png", 20, 20), "Nummer5");
 		} catch (FileNotFoundException e) {
 			System.out.println(e.getMessage());
 		}
 
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
-				map.setBlock(i, j, coloredBlocks[(int) (Math.random() * 4)]);
+				map.setBlock(i, j, coloredBlocks[Math.max(i, j) % 4]);
 			}
 		}
 		ply.posX(8);
