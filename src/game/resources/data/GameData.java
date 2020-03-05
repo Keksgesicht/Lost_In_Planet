@@ -1,7 +1,7 @@
 /**
  * 
  */
-package game.resources;
+package game.resources.data;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,15 +16,16 @@ public abstract class GameData {
 
 	private static List<Player> players = new ArrayList<>();
 
-	private GameData() {
-	}
-
 	public static int getPlayerCount() {
 		return players.size();
 	}
 
 	public static Player getPlayer(int index) {
 		return players.get(index);
+	}
+
+	public static void add(Player ply) {
+		players.add(ply);
 	}
 
 }

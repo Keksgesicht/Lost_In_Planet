@@ -17,6 +17,7 @@ public abstract class GameVisibleItem {
 	public GameVisibleItem(Image image, String name) {
 		this.image = image;
 		this.name = name;
+		position = new Point(0, 0);
 	}
 
 	/**
